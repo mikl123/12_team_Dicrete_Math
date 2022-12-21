@@ -14,7 +14,25 @@ def write_csv(graph:dict, dst:str, orientated:bool=False)-> None:
     pass
 
 def bfs(graph,**kwargs)->list:
-    pass
+    """
+    Bfs algoritm
+    >>> bfs({2:[5], 3:[4, 5], 4:[3, 5], 5:[2, 3, 4]})
+    [2, 5, 3, 4]
+    """
+    if "obhid" in kwargs and "cherga" in kwargs:
+        obhid=kwargs["obhid"]
+        cherga=kwargs["cherga"]
+    else:
+        obhid=[list(graph.keys())[0]]
+        cherga=[list(graph.keys())[0]]
+    for i in graph[cherga[0]]:
+        if i not in obhid:
+            obhid.append(i)
+            cherga.append(i)
+    if len(cherga)!=1:
+        cherga=cherga[1:]
+        bfs(graph,cherga=cherga,obhid=obhid)
+    return obhid
 
 def find_connectivity_components(graph:dict)->List[int]:
     pass
