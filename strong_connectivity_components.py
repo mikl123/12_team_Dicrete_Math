@@ -37,18 +37,18 @@ using bfs traversal to find all strong connectivity components.
 format(key: vertex, values: neighbour vertixes)"
     Returns:
         List[int]: min value of every scc.
-    >>> forward_backward({2:[5], 3:[4], 4:[], 5: [3, 4]})
+    >>> strong_connectivity_components({2:[5], 3:[4], 4:[], 5: [3, 4]})
     [2, 3, 4, 5]
-    >>> forward_backward({0: [1], 1: [0], 2: [3, 4], 3: [2],\
+    >>> strong_connectivity_components({0: [1], 1: [0], 2: [3, 4], 3: [2],\
     4: [2, 5], 5: [4], 6: [10, 8], 7: [9], 8: [10,\
     9, 6], 9: [10, 8, 7], 10: [8, 9, 6]})
     [0, 2, 6]
-    >>> forward_backward(3)
+    >>> strong_connectivity_components(3)
     'Seems like your graph is not dictionary! Write\
     it in dict format(key: vertex, values: neighbour vertixes)'
-    >>> forward_backward({})
+    >>> strong_connectivity_components({})
     None
-    >>> forward_backward({0: [2,3], 1: [0], 2: [1], 3: [4], 4: []})
+    >>> strong_connectivity_components({0: [2,3], 1: [0], 2: [1], 3: [4], 4: []})
     [0, 3, 4]
     """
     if all_scc is None:
@@ -106,3 +106,5 @@ format(key: vertex, values: neighbour vertixes)"
     #11. return all strong connectivity components
 
     return list(set(all_scc))
+
+print(strong_connectivity_components({0: [2,3], 1: [0], 2: [1], 3: [4]}))
