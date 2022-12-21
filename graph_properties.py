@@ -30,6 +30,7 @@ def strong_connectivity_components(graph : dict, all_scc = None) ->List[int] :
 
 def main():
     pass
+
 if __name__=="__main__":
     main()
     import doctest
