@@ -5,7 +5,6 @@ from typing import Dict,List
 import os
 import copy
 from collections import defaultdict
-import argparse
 
 def read_csv(path:str, orientated:bool=False) -> Dict[int, List[int]]:
     """
@@ -267,11 +266,18 @@ def main():
     """
     print("Our module checks graph properties.\n\
 If tou want to find out what components are in your graph enter 1.\n\
+Graph will be readed as not oriented\n\
 If you want to find out what strongly connected components are in your graph enter 2.\n\
+Graph will be readed as oriented\n\
 If you want to find out what connection points are in your graph enter 3.\n\
+Graph will be readed as not oriented\n\
 If you want to find out what bridges are in your graph enter 4.\n\
+Graph will be readed as not oriented\n\
 If you want to write graph to file from file enter 5.\n\
-If you want to see what return read_csv() enter 6.")
+You will be able to choose type of graph\n\
+If you want to see what return read_csv() enter 6.\n\
+You will be able to choose type of graph\n\
+Choose command")
     func_type = input(">>> ")
     if func_type == "1":
         print("You need to input path to file where graph is.")
@@ -295,18 +301,24 @@ If you want to see what return read_csv() enter 6.")
         print("You also need to input what type of graph you want to read\
  and write(1 - oriented 2 - not oriented)")
         type_graph = input(">>> ")
-        type_graph = True if type_graph == 1 else False
-        print("You also need to input write path")
-        write_path = input(">>> ")
-        write_csv(read_csv(file_path,type_graph),write_path,type_graph)
+        if type_graph in ["1","2"]:
+            type_graph = True if type_graph == "1" else False
+            print("You also need to input write path")
+            write_path = input(">>> ")
+            write_csv(read_csv(file_path,type_graph),write_path,type_graph)
+        else:
+            print("Wrong data. You need input 1 or 2")
     elif func_type == "6":
         print("You need to input path to file where graph is.")
         file_path = input(">>> ")
         print("You also need to input what type of graph you want to read\
  and write(1 - oriented 2 - not oriented)")
         type_graph = input(">>> ")
-        type_graph = True if type_graph == 1 else False
-        print(read_csv(file_path,type_graph))
+        if type_graph in ["1","2"]:
+            type_graph = True if type_graph == 1 else False
+            print(read_csv(file_path,type_graph))
+        else:
+            print("Wrong data. You need input 1 or 2")
     else:
         print("Wrong command")
 
