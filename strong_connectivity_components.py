@@ -26,7 +26,7 @@ def bfs(graph,**kwargs)->list:
         bfs(graph,cherga = cherga,obhid = obhid)
     return obhid
 
-def forward_backward(graph : dict, all_scc = None) ->List[int] :
+def strong_connectivity_components(graph : dict, all_scc = None) ->List[int] :
     """
     This function does a forward_backward algorithm on the graph,
 using bfs traversal to find all strong connectivity components.
@@ -88,20 +88,20 @@ format(key: vertex, values: neighbour vertixes)"
     #6.use recursion for the graph in step 5
     for i in front_way.difference(scc) :
         graph1[i] = deepcopy(graph[i])
-    forward_backward(graph1,all_scc)
+    strong_connectivity_components(graph1,all_scc)
 
     #9.form a new graph( keys and values = graph intersection (3 union 4)))
     #10.use recursion for the graph in step 9
 
     for i in missed :
         graph1[i] = deepcopy(graph[i])
-    forward_backward(graph1,all_scc)
+    strong_connectivity_components(graph1,all_scc)
 
     #9.form a new graph( keys and values = 3 intersection 4))
     #10.use recursion for the graph in step 7
     for i in back_way.difference(scc):
         graph1[i] = deepcopy(graph[i])
-    forward_backward(graph1, all_scc)
+    strong_connectivity_components(graph1, all_scc)
 
     #11. return all strong connectivity components
 
