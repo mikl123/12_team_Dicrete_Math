@@ -66,7 +66,35 @@ format(key: vertex, values: neighbour vertixes)"
     return res
 
 def connecting_points(graph:dict)->list:
-    pass
+    """Finds and returns all connecting_points of unoriented graph
+    Args:
+        graph (dict): graph(key-vertix, values-neighbour vertixes)
+    Returns:
+        list[int]: all connecting points
+    >>> connecting_points('sadg')
+    Seems it is not graph in dictionary type!
+    >>> connecting_points({1:[2, 5], 2:[1, 5], 3:[4, 5], 4:[3, 5], 5:[1, 2, 3, 4]})
+    [5]
+    >>> connecting_points({1:[2, 3, 4], 2:[1, 3, 5],\
+    3:[1, 2], 4:[1], 5:[2, 6, 8], 6:[5, 7], 7:[6, 8], 8:[5, 7]})
+    [1, 2, 5]
+    >>> connecting_points({1:{2, 4}, 2:{1, 3}, 3: {2, 4}, 4: {1, 3}})
+    []
+    """
+    if not isinstance(graph, dict):
+        print("Seems it is not graph in dictionary type!")
+        return None
+    lst = []
+    for key in graph:
+        new = copy.deepcopy(graph)
+        new.pop(key)
+        final = {}
+        for i in new:
+            final[i]=[k for k in new[i] if k != key]
+        check = bfs(final)
+        if len(check) != len(graph)-1:
+            lst.append(key)
+    return lst
 
 def find_bridges(graph: dict) -> list:
     pass
